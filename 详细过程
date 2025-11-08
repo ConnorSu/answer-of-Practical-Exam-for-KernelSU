@@ -1,0 +1,51 @@
+Practical Exam for KernelSU
+
+cd /home/user/workdir
+
+ls
+系统回应：root@Arch (/home/user/workdir/) # ls
+
+boot-official.img  android12-5.10.117_2022-09-boot-gz.img  android12-5.10.117_2022-09-boot-lz4.img  android12-5.10.117_2022-09-boot.img  android12-5.10.160_2023-03-boot-gz.img  android12-5.10.160_2023-03-boot-lz4.img  android12-5.10.160_2023-03-boot.img  android13-5.10.157_2023-03-boot-gz.img  android13-5.10.157_2023-03-boot-lz4.img  android13-5.10.157_2023-03-boot.img  magiskboot 
+
+我整理了一下：
+
+android12-5.10.117_2022-09-boot-gz.img
+android12-5.10.117_2022-09-boot-lz4.img
+android12-5.10.117_2022-09-boot.img
+android12-5.10.160_2023-03-boot-gz.img
+android12-5.10.160_2023-03-boot-lz4.img
+android12-5.10.160_2023-03-boot.img
+android13-5.10.157_2023-03-boot-gz.img
+android13-5.10.157_2023-03-boot-lz4.img
+android13-5.10.157_2023-03-boot.img
+
+magiskboot unpack boot-official.img
+系统回应内容
+root@Arch (/home/user/workdir/) # magiskboot unpack boot-official.img
+
+Parsing boot image: [boot-official.img]
+HEADER_VER      [4]
+KERNEL_SZ       [37532988]
+RAMDISK_SZ      [1380084]
+OS_VERSION      [12.0.0]
+OS_PATCH_LEVEL  [2022-11]
+PAGESIZE        [4096]
+CMDLINE         []
+KERNEL_FMT      [lz4_lg]
+RAMDISK_FMT     [lz4_legacy]
+VBMETA
+
+
+应该选安卓12版本的内核，安全补丁比旧版本更新的，以及lz4_legacy加密方式的
+
+adb reboot bootloader
+系统回应内容
+root@Arch (/home/user/workdir/) # adb reboot bootloader
+
+Rebooting                    OKAY [ 0.001s]
+Finished. Total time: 0.051s
+
+fastboot flash boot android12-5.10.160_2023-03-boot-lz4.img
+
+复制密码，使用/join 密码回复bot即可进群
+
